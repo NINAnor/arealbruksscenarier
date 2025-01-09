@@ -1,37 +1,70 @@
 # Load necessary libraries
 library(tidyverse)
 library(sf)
-library(tmap)
-library(readxl)
-library(units)
-library(cowplot)
+
+
+## script to calculate differences in area change between global land cover data set (GLC) and official SSB stats (based on AR5)
 
 # Set locale and options
-#Sys.setlocale("LC_CTYPE", "norwegian")
 Sys.setlocale(locale='no_NB.utf8') 
 options(scipen = 999)
 main_path <- "C:/Users/reto.spielhofer/OneDrive - NINA/Documents/Projects/APPLICATIONS/2025/UPLAND_2/test_site_selection/DATA_TROND"
 
 shp_path <- paste0(main_path,"/2023/kommuner_2023_land.shp")
 kommuner_land <- st_read(shp_path) |> st_transform(25833)
-#plot(kommuner_land$geometry)
-qtm(kommuner_land)
 
 
 # Define the path to the geodatabase
-fgdb_path <- paste0(main_path,"/Data2Trond.gdb")
+#fgdb_path <- paste0(main_path,"/Data2Trond.gdb")
 
+## global landcover per municipality (GLC)
+#fcKomGLCkm2 <- st_read(fgdb_path, layer = "fcKomGLCkm2") |> st_drop_geometry()
+
+# or
+KomGLCkm2 <- read.csv(file.path(main_path, "fcKomGLCkm2_tibble.csv"),encoding = "UTF-8") |> as_tibble() |> select(kommunenummer, KomNavn, ImpAreaKm2_2015,ImpAreaKm2_2016,ImpAreaKm2_2017,ImpAreaKm2_2018,ImpAreaKm2_2019,ImpAreaKm2_2020,ImpAreaKm2_2021,ImpAreaKm2_2022)
+
+
+## SSB stats (AR5 per municipality)
+KomSSBkm2 <- read.csv(file.path(main_path, "ssb_10781.csv")) |> as_tibble()
+
+KomSSBkm2_clean <- KomSSBkm2 %>%
+  mutate(
+    # Remove the "K-" prefix
+    cleaned_col = str_remove(navn, "^K-")
+  ) %>%
+  separate(
+    cleaned_col, into = c("kommunenummer", "KomNavn"), sep = " ", convert = TRUE
+  )%>%group_by(kommunenummer,KomNavn)%>%summarise(across(where(is.numeric), sum, .names = "sum_{.col}"))%>%select(sum_X2015,sum_X2016,sum_X2017,sum_X2018,sum_X2019,sum_X2020,sum_X2021,sum_X2022)
+
+
+## trend ssb km2 2015- 2022
+KomSSBkm2_clean$rel_trendSSB_15_22<-1-KomSSBkm2_clean$sum_X2015/KomSSBkm2_clean$sum_X2022
+
+## trend GLC km2 2015- 2022
+KomGLCkm2$rel_trendGLC_15_22<-1-KomGLCkm2$ImpAreaKm2_2015/KomGLCkm2$ImpAreaKm2_2022
+
+## merge the two trends to compare
+trend<-merge(KomSSBkm2_clean,KomGLCkm2, by = "kommunenummer")%>%select(kommunenummer,KomNavn,rel_trendSSB_15_22,rel_trendGLC_15_22)
+trend$diff_trend_ssb_glc<-trend$rel_trendSSB_15_22-trend$rel_trendGLC_15_22
+
+summary(trend$diff_trend_ssb_glc)
+# Calculate the 1st and 3rd quartiles
+Q1 <- quantile(trend$diff_trend_ssb_glc, 0.25, na.rm = T)  # 1st Quartile (25th percentile)
+Q3 <- quantile(trend$diff_trend_ssb_glc, 0.75, na.rm = T)  # 3rd Quartile (75th percentile)
+
+# Filter and count rows within Q1 and Q3
+count_within <- nrow(trend%>%filter(diff_trend_ssb_glc >= Q1 & diff_trend_ssb_glc<= Q3))
+print(count_within)
 
 # List all layers in geodatabase
-#st_layers(gdb_path)
-st_layers(fgdb_path, options = character(0), do_count = FALSE)
+# #st_layers(gdb_path)
+# st_layers(fgdb_path, options = character(0), do_count = FALSE)
+# 
+# fcKomPop <- st_read(fgdb_path, layer = "fcKomPop") |> st_drop_geometry()
+# pop <- fcKomPop |> select(kommunenummer, KomNavn, bef2000, bef2022, est2050) |> rename(bef2050 = est2050)
+# plot(pop)
 
-fcKomPop <- st_read(fgdb_path, layer = "fcKomPop") |> st_drop_geometry()
-pop <- fcKomPop |> select(kommunenummer, KomNavn, bef2000, bef2022, est2050) |> rename(bef2050 = est2050)
-plot(pop)
 
-## global landcover per municipality
-fcKomGLCkm2 <- st_read(fgdb_path, layer = "fcKomGLCkm2") |> st_drop_geometry()
 
 areal <- fcKomGLCkm2 |> select(kommunenummer, KomNavn, intercept, slope, ImpAreaKm2_2000, ImpAreaKm2_2022, eImpAreaKm2_2050) |> 
   rename(Km2_2000 = ImpAreaKm2_2000, Km2_2022 = ImpAreaKm2_2022, Km2_2050 = eImpAreaKm2_2050)

@@ -172,7 +172,7 @@ master <- master %>%
       AGR_pop > thresholds_pop[2] ~ "incline",
       TRUE ~ "stable"
     ),
-
+    
     # BPC change classes
     bpc_ssb_change_class = case_when(
       AGR_BPC_SSB < thresholds_bpc_SSB[1] ~ "small_change",

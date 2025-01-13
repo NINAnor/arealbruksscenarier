@@ -48,7 +48,8 @@ pop<-read.csv(file.path(main_path, "ssb_06913.csv"))
 ## municipalities to regions (fylke)
 regio<-read.csv(file.path(main_path, "kom_fylke.csv")) 
 
-
+# Naturkampen ranking "utbygging"
+rank_natkamp<- read.csv(file.path(main_path, "nat_kamp_plass_bygg.csv"),encoding = "UTF-8") |> as_tibble()
 
 ### 1. PROCESSING built up area changes
 ## to compare the GLC and the SSB data set, a selection of 2015 - 2022 is made for both data sets. In a second step, a linear transformation is applied.
@@ -229,9 +230,18 @@ master_sel<-merge(master_sel,cent,by.x = "kommunenummer",by.y="knr.2024")
 master_sel<-master_sel%>%filter(Klasse.2023<6 & Klasse.2023>1)
 
 # 4.4 filter only by interesting classes 
-target_class<-c("g) Arealeffektiv vekst","i) Rask vekst i utbygd areal","c) Nedgang-spredning")
+target_class<-c("g) Arealeffektiv vekst","i) Rask vekst i utbygd areal","c) Nedgang-spredning", "f) Ekspansjon i utbygd areal")
 master_sel<-master_sel%>%filter(cat_NOR %in% target_class)
+
+
+# 4.5 Naturkampen ranking
+rank_natkamp$nat_kamp_plass<-apply(rank_natkamp[c(3:5)], 1, median)
+rows_not_in_df2 <- anti_join(master_sel, rank_natkamp, by = c("kommunenummer", "Kommunenr"))
+
+master_sel<-merge(master_sel,rank_natkamp,by.x = "KomNavn.x",by.y = "Kommunenavn")
 ###### stats by fylke and cat_NOR
 counts<-master_sel%>%group_by(fylkesnavn,cat_NOR)%>%summarise(cnt = n())
+a<-master_sel%>%select(KomNavn.x,fylkesnavn,cat_NOR,Klasse.2023,nat_kamp_plass)
 
 write.csv(master_sel,"glc_eq_ssb_selection_upland.csv")
+write.csv(a,"upland_pre_utvalg.csv")

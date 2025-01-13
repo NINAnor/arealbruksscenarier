@@ -14,13 +14,11 @@ shp_path <- paste0(main_path,"/2023/kommuner_2023_land.shp")
 kommuner_land <- st_read(shp_path) |> st_transform(25833)
 
 
-# Define the path to the geodatabase
-#fgdb_path <- paste0(main_path,"/Data2Trond.gdb")
 
-## global landcover per municipality (GLC)
-#fcKomGLCkm2 <- st_read(fgdb_path, layer = "fcKomGLCkm2") |> st_drop_geometry()
 
-# or
+
+# GLOBAL LAND COVER
+
 KomGLCkm2 <- read.csv(file.path(main_path, "fcKomGLCkm2_tibble.csv"),encoding = "UTF-8") |> as_tibble() |> select(kommunenummer, KomNavn, ImpAreaKm2_2015,ImpAreaKm2_2016,ImpAreaKm2_2017,ImpAreaKm2_2018,ImpAreaKm2_2019,ImpAreaKm2_2020,ImpAreaKm2_2021,ImpAreaKm2_2022)
 
 

@@ -5,8 +5,6 @@
 library(tidyverse)
 library(sf)
 
-
-
 ################# functions
 delta<-function(x1,x0,y1,y0){
   # Validate input

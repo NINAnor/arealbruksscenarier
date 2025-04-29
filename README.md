@@ -1,4 +1,8 @@
-## Test
+# Source code collection "Samlet utbyggingsareal i Kommune-Norge: Historisk utvikling og framtidige scenarioer, 2000–2050"
+
+This repository collects the main scripts to reproduce the research communicated in the publication "Samlet utbyggingsareal i Kommune-Norge: Historisk utvikling og framtidige scenarioer, 2000–2050" from Simensen et al., 2025. In the R folder you find 
+* 1_AGR_calculations.R which is the core routine to calculate land take per capita for each Norwegian municipality
+* 2_tables and figures need the output of the first script as input and produce the different tables and plots for the publication
 
 
 | Column Name     | Data Type | Description                                                                 |

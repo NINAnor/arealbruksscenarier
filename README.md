@@ -17,6 +17,6 @@ You can download the following input data used for the analysis from the followi
 | `change_data_population_area_2000_2050.csv`   | Float      | The raw reading from the sensor device.                                    |
 | `fcKomGLCkm2_tibble.csv`      | python     | Unique identifier of the device collecting the data.                       |
 | `fcKomPop.csv`         | ?     | Operational status of the sensor (`active`, `inactive`, or `error`).      |
-| `komm_var`       | ?     | Geographic location or label of the sensor’s position.                    |
+| `komm_var.csv`       | ?     | Geographic location or label of the sensor’s position.                    |
 | `kommuner_land.gpkg`       | Kartverket     | Administrative units of Norway                    |
 | `tabell_ssb_954_2011_2022.csv`       | SSB     | 09594: Arealbruk og arealressurser, etter arealklasse (km²) (K) (B) 2011 - 2024                    |

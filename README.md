@@ -10,11 +10,13 @@ The **data folder** contains the output table from *1_AGR_calculations.R* and th
 You can download the following input data used for the analysis from the following repository
 
 
-| File    | Data Type | Description                                                                 |
+| File    | Source | Description                                                                 |
 |------------------|------------|-----------------------------------------------------------------------------|
-| `area_measured_and_estimated_2000_2050`             | Integer    | Unique identifier for each record.                                         |
-| `timestamp`      | Datetime   | Date and time the data was recorded (ISO 8601 format).                     |
-| `sensor_value`   | Float      | The raw reading from the sensor device.                                    |
-| `device_id`      | String     | Unique identifier of the device collecting the data.                       |
-| `status`         | String     | Operational status of the sensor (`active`, `inactive`, or `error`).      |
-| `location`       | String     | Geographic location or label of the sensor’s position.                    |
+| `area_measured_and_estimated_2000_2050.csv`             | ??    | Unique identifier for each record.                                         |
+| `arealnøytrale_kommuner_2024.csv`      | SABIMA   | Date and time the data was recorded (ISO 8601 format).                     |
+| `change_data_population_area_2000_2050.csv`   | Float      | The raw reading from the sensor device.                                    |
+| `fcKomGLCkm2_tibble.csv`      | python     | Unique identifier of the device collecting the data.                       |
+| `fcKomPop.csv`         | ?     | Operational status of the sensor (`active`, `inactive`, or `error`).      |
+| `komm_var`       | ?     | Geographic location or label of the sensor’s position.                    |
+| `kommuner_land.gpkg`       | Kartverket     | Administrative units of Norway                    |
+| `tabell_ssb_954_2011_2022.csv`       | SSB     | 09594: Arealbruk og arealressurser, etter arealklasse (km²) (K) (B) 2011 - 2024                    |

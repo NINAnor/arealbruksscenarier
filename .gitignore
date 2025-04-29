@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data/
+data-raw/
+reports/
+add-on/
+utbyggingsareal_norge/

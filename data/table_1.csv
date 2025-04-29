@@ -1,0 +1,20 @@
+"","Variable","Description_English","Description_Norwegian","Min","Median","Mean","Max","SD"
+"1","area_t0","Area in square meters at initial time (t0)","Areal i kvadratmeter ved starttidspunkt (t0)",0,1.869,4.317,73.182,7.04
+"2","area_t1","Area in square meters at time t1","Areal i kvadratmeter ved tidspunkt t1",0,2.267,5.21,79.323,8.081
+"3","km2_change_2000_2022","Change in area (km^2) between 2000 and 2022","Endring i areal (km^2) mellom 2000 og 2022",0,0.31,0.893,8.359,1.419
+"4","pop_t0","Population at initial time (t0)","Befolkning ved starttidspunkt (t0)",256,4859,12544.686,507467,33140.603
+"5","pop_t1","Population at time t1","Befolkning ved tidspunkt t1",188,5204,15196.835,699827,44748.392
+"6","pop_change_2000_2022","Population change from 2000 to 2022","Befolkningsendring fra 2000 til 2022",-1559,27,2652.148,192360,11848.325
+"7","bpc_t0","Built-up area per capita at initial time (t0)","Utbygd areal per innbygger ved starttidspunkt (t0)",0,338.856,497.834,4405.264,596.196
+"8","bpc_t1","Built-up area per capita at time t1","Utbygd areal per innbygger ved tidspunkt t1",0,386.003,588.194,5341.597,705.864
+"9","AGR_pop_1","Annual growth rate of population (t0 to t1)","Årlig vekstrate for befolkning (t0 til t1)",-2.278,0.022,0.117,3.344,0.832
+"10","AGR_bpc_1","Annual growth rate of built-up area per capita (t0 to t1)","Årlig vekstrate for utbygd areal per innbygger (t0 til t1)",-1.987,0.687,0.753,3.487,0.893
+"11","BPC_ratio","Ratio of built-up area per capita (t1/t0)","Forhold mellom utbygd areal per innbygger (t1/t0)",0.643,1.161,1.201,2.126,0.246
+"12","area_t2","Area in square meters at time t2","Areal i kvadratmeter ved tidspunkt t2",0,2.819,6.347,87.139,9.548
+"13","km2_change_2022_2050","Change in area (km^2) between 2022 and 2050","Endring i areal (km^2) mellom 2022 og 2050",0,0.395,1.137,10.639,1.806
+"14","pop_t2","Population at time t2","Befolkning ved tidspunkt t2",305,5358,17128.569,817225,52080.106
+"15","pop_change_2022_2050","Population change from 2022 to 2050","Befolkningsendring fra 2022 til 2050",-1978,168,1931.734,117398,7539.283
+"16","bpc_t2","Built-up area per capita at time t2","Utbygd areal per innbygger ved tidspunkt t2",0,453.445,662.531,5936.85,781.926
+"17","AGR_pop_2","Annual growth rate of population (t1 to t2)","Årlig vekstrate for befolkning (t1 til t2)",-0.852,0.212,0.227,1.743,0.408
+"18","AGR_bpc_2","Annual growth rate of built-up area per capita (t1 to t2)","Årlig vekstrate for utbygd areal per innbygger (t1 til t2)",-1.014,0.407,0.409,2.03,0.506
+"19","BPC_ratio_t_1_2","Ratio of built-up area per capita (t2/t1)","Forhold mellom utbygd areal per innbygger (t2/t1)",0.752,1.119,1.132,1.755,0.163

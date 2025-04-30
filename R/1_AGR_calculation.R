@@ -264,4 +264,5 @@ bpc_data <- bpc_data %>%
     BPC_ratio_t_1_2 = bpc_t2 / bpc_t1    # Ratio for future data (2022–2050)
   )
 
-write.csv(bpc_data,"data/bpc_data.csv")
+# check utf before save
+write.csv(bpc_data,"data/bpc_data.csv",fileEncoding = "UTF-8")

@@ -25,4 +25,5 @@ The **data folder** contains the output table from *1_AGR_calculations.R* and th
 ## Input data
 You can download the following input data used for the analysis from the following repository
 
+[![DOI](https://zenodo.org/badge/913708722.svg)](https://doi.org/10.5281/zenodo.15370391)
 

@@ -13,10 +13,8 @@ In the **R folder** you find:
 |------------------|------------|-----------------------------------------------------------------------------|
 | `area_measured_and_estimated_2000_2050.csv`             | GLC_FCS30 (Zhang mfl., 2021 - https://doi.org/10.5194/essd-13-2753-2021)   | Linear regression and extrapolation of future trends of land take for Norwegian municipalities                                       |
 | `arealnøytrale_kommuner_2024.csv`      | SABIMA   | Information regarding the Norwegian municipalities aiming for land neutrality.                     |
-| `change_data_population_area_2000_2050.csv`   | SSB      | Based on:  https://www.ssb.no/statbank/table/14288 ? Which scenario?                              |
-| `fcKomGLCkm2_tibble.csv`      | ??     | ??                      |
-| `fcKomPop.csv`         | ??     | ??   |
-| `komm_var.csv`       | ??     | ??                |
+| `change_data_population_area_2000_2050.csv`   | SSB      | Based on:  https://www.ssb.no/statbank/table/14288                   |
+| `fcKomPop.csv`         |     | Curated data frame from area_measured_and_estimated_2000_2050.csv and change_data_population_area_2000_2050.csv  |
 | `kommuner_land.gpkg`       | Kartverket     | Administrative units of Norway                    |
 | `tabell_ssb_954_2011_2022.csv`       | SSB     | 09594: Arealbruk og arealressurser, etter arealklasse (km²) (K) (B) 2011 - 2024                    |
 

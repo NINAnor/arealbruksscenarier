@@ -17,17 +17,13 @@ options(scipen = 999)
 data_folder <- "data/"
 raw_folder<- "data-raw"
 
-# Co-variates for the municipalities
-komm_var <- read.csv(file.path(raw_folder, "komm_var.csv")) |> as_tibble()
 
 arealnoytral <- read.csv(file.path(raw_folder, "arealnøytrale_kommuner_2024.csv"), sep = ";") |> as_tibble()
 arealnoytral$arealnoytral[is.na(arealnoytral$arealnoytral)] <- 0
 arealnoytral$kommunenummer <- as.integer(arealnoytral$kommunenummer)
 
-#join
-komm_var <- left_join(komm_var, arealnoytral, by = "kommunenummer")
 
-
+# result from 1_AGR_calculation.R
 bpc_data<-read.csv(paste0(data_folder,"bpc_data.csv"))
 
 # Spatial data for NOR municipalities
@@ -700,9 +696,6 @@ combined_plots_annotated
 
 
 ########## Figure 3
-
-
-
 # Extract and sort year-based columns
 year_columns <- names(fcKomPop) %>%
   grep("^pop\\d{4}$", ., value = TRUE) %>%

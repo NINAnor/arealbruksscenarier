@@ -20,12 +20,6 @@ options(scipen = 999)
 raw_folder <- "data-raw/" 
 
 
-# Original area, impervious surfaces in GLC (see python script)
-fcKomGLCkm2 <- read.csv(file.path(raw_folder, "fcKomGLCkm2_tibble.csv")) |> as_tibble()
-
-# Population data and estimates from SSB
-fcKomPop <- read.csv(file.path(raw_folder, "fcKomPop.csv")) |> as_tibble()
-
 # Global land cover data (GLC) (see python script)
 area_measured_and_estimated <- read.csv(file.path(raw_folder, "area_measured_and_estimated_2000_2050.csv")) |> as_tibble()
 
